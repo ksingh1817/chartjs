@@ -8,11 +8,13 @@
  
  
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box;}
+* { margin: 0; padding: 0; box-sizing: border-box; font-size: 16px; font-weight: 500; font-family: Arial, Helvetica, sans-serif; }
 div {  width: 100%; float: left; padding: 1rem; display: flex; justify-content: space-evenly; align-items: flex-start; flex-wrap: wrap; row-gap: 2rem; column-gap: 2rem;   }
 ul { width: 25%; display: flex; flex-direction: column;  }
-li { list-style: none; margin:0; padding:0; width: 100%; }
-a {    display: block; margin:0.3rem 0; padding:0.4rem; border:solid 1px #14A0D2; background: #fff; text-align: center; text-decoration: none; color: #14A0D2; font-size: 18px; font-weight: 500; font-family: Arial, Helvetica, sans-serif; }
+li { list-style: none; margin:0; padding:0; width: 100%;  }
+li h2 { font-size: 22px; color: #f30; margin-bottom: 0.5rem; }
+li p { font-size: 16px; color: #333; margin-bottom: 1rem; }
+a {    display: block; margin:0.3rem 0; padding:0.4rem; border:solid 1px #14A0D2; background: #fff; text-align: center; text-decoration: none; color: #14A0D2; font-size: 18px; font-weight: 500; }
 a:hover { background: #14A0D2;  color:#fff;  }
 
 @media only screen and (max-width:1023px) 
@@ -27,55 +29,99 @@ a:hover { background: #14A0D2;  color:#fff;  }
 </style>
 </head>
 <body>
+    <h1 style="width: 100%; float: left; padding:1rem;  font-size:32px;   color:#14A0D2; text-align:center;">
+    Chartjs 
+    </h1>
+    <p style="width: 100%; float: left; padding:0 1rem 2ren 1rem;   font-size:18px;  color:#333; text-align: center;"">
+        Chart.js is a powerful and flexible JavaScript library for data visualization. It lets you create interactive charts with minimal code, and it's widely used because it's lightweight, responsive, and easy to customize.
+    </p>
 <div>
     <ul>
-        <li><h2>Bar</h2></li>
+        <li>
+            <h2>Bar</h2>
+            <p>
+                Bar charts are great for comparing values across categories. They can be displayed vertically or horizontally, and they are ideal for showing trends over time or comparing different groups.
+            </p>
+        </li>
         <li><a href="bar-single.html">Single Bar Chart</a></li>
         <li><a href="bar-single.html">Single Bar Chart</a></li>
         <li><a href="bar-vertical.html">Vertical Bar Chart</a></li>
         <li><a href="bar-horizontal.html">Horizontal Bar Chart</a></li>
         <li><a href="bar-multi.html">Multi Bar Chart</a></li>
         <li><a href="bar-multi-horizontal.html">Multi Borizontal Bar Chart</a></li>
-        
-
     </ul>
 
     <ul>
-        <li><h2>Line</h2></li>
+        <li>
+            <h2>Line</h2>
+            <p>
+                Line charts are perfect for showing trends over time. They connect data points with a continuous line, making it easy to visualize changes and patterns in the data.
+            </p>
+        </li>
         <li><a href="line-single.html">Single Line Chart</a></li>
         <li><a href="line-multi.html">Multi Line Chart</a></li>
+    </ul>
 
- 
+    <ul>
+        <li>
+            <h2>Area</h2>
+            <p>
+                Area charts are similar to line charts but with the area below the line filled with color. They are useful for showing the magnitude of change over time and can help visualize cumulative totals.
+            </p>
+        </li>
+        <li><a href="area.html">Area Chart</a></li>
     </ul>
 
      <ul>
-        <li><h2>Doughnut</h2></li>
+        <li>
+            <h2>Doughnut</h2>
+            <p>
+                Doughnut charts are similar to pie charts but with a hole in the center. They are useful for showing the relationship of parts to a whole, and the hole can be used to display additional information.
+            </p>
+        </li>
         <li><a href="doughnut.html">Doughnut Chart</a></li>
     </ul>
 
      <ul>
-        <li><h2>Pie</h2></li>
+        <li>
+            <h2>Pie</h2>
+            <p>
+                Pie charts are useful for showing the proportion of each category in a dataset. Each slice of the pie represents a different category, and the size of each slice is proportional to the quantity it represents.
+            </p>
+        </li>
         <li><a href="pie.html">Pie Chart</a></li>
     </ul>
 
-    <ul>
-        <li><h2>Area</h2></li>
-        <li><a href="area.html">Area Chart</a></li>
-    </ul>
+
 
     <ul>
-        <li><h2>Radar</h2></li>
+        <li>
+            <h2>Radar</h2>
+            <p>
+                Radar charts, also known as spider charts, are used to display multivariate data in a way that allows for easy comparison of multiple variables. Each variable is represented on a separate axis that starts from the same point.
+            </p>
+        </li>
         <li><a href="radar.html">Radar Chart</a></li>
     </ul>
 
     <ul>
-        <li><h2>Scatter</h2></li>
+        <li>
+            <h2>Scatter</h2>
+            <p>
+                Scatter charts are used to display the relationship between two variables. Each point on the chart represents a single data point, and the position of the point is determined by the values of the two variables.  
+            </p>
+        </li>
         <li><a href="scatter.html">Scatter Chart</a></li>
 
     </ul>
 
     <ul>
-        <li><h2>Bubble</h2></li>
+        <li>
+            <h2>Bubble</h2>
+            <p>
+                Bubble charts are an extension of scatter charts, where the size of each bubble represents a third variable. They are useful for visualizing the relationship between three variables simultaneously.
+            </p>
+        </li>
         <li><a href="bubble.html">Bubble Chart</a></li>
     </ul>
 
