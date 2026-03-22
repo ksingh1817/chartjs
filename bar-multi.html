@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chartjs</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      padding: 0px;
+      border-radius: 0;
+      margin: 0;
+    }
+    #chart-container {
+      width: 95%;
+      max-width: 1000px;
+      height: 550px; /* ✅ fixed height */
+      margin: 20px auto;
+      background: #ffffff;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    }
+
+    canvas {
+      width: 100% !important;
+      height: 100% !important;
+    }
+
+    @media (max-width: 600px) {
+      #chart-container {
+        height: 350px;  
+        padding: 10px;
+      }
+    }
+  </style>
+
+</head>
+<body>
+
+<div id="chart-container">
+  <canvas id="myChart"></canvas>
+</div>
+
+<script>
+const ctx = document.getElementById('myChart');
+
+const apiData = {
+  "labels": ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+  "datasets": [
+    {
+      "label": "Blue",
+      "data": [1,-1,-2,-7,-11,-1,4,7,11,15,18,20]
+    },
+    {
+      "label": "Green",
+      "data": [1,2,6,2,-4,-3,2,8,11,13,16,18]
+    },
+    {
+      "label": "Yellow",
+      "data": [1,2,3,1,-3,-2,1,5,11,17,22,24]
+    }
+  ]
+};
+ const formattedData = {
+    labels: apiData.labels,
+    datasets: apiData.datasets.map((dataset, index) => {
+      const colors = [
+        { bg: '#4285F4', hover: '#2e59d9' },
+        { bg: '#34A853', hover: '#17a673' },
+        { bg: '#FBBC05', hover: '#dda20a' }
+      ];
+
+      return {
+        ...dataset,
+        backgroundColor: colors[index].bg,
+        hoverBackgroundColor: colors[index].hover,
+        borderRadius: 4
+      };
+    })
+  };
+ 
+
+new Chart(ctx, {
+  type: 'bar',
+  data: formattedData,
+  /* data: {
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun','Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    datasets: [
+      {
+        label: 'Product A',
+        data: [12, 19, 3, 5, 8, 7, 14, 16, 13, 15, 18, 20],
+        backgroundColor: '#4285F4',
+         hoverBackgroundColor: '#2e59d9',
+          borderRadius: 4,
+      },
+      {
+        label: 'Product B',
+        data: [8, 11, 7, 6, 10, 9, 12, 14, 11, 13, 16, 18],
+        backgroundColor: '#34A853',
+        hoverBackgroundColor: '#17a673',
+         borderRadius: 4,
+      },
+      {
+        label: 'Product C',
+        data: [15, 10, 12, 9, 14, 11, 18, 20, 17, 19, 22, 25],
+        backgroundColor: '#FBBC05',
+        hoverBackgroundColor: '#dda20a',
+        borderRadius: 4,
+      }
+    ],
+  },*/
+  
+
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+
+    // ✅ interaction settings for better tooltip behavior
+    interaction: {
+      mode: 'index',
+      intersect: false
+    },
+
+    plugins: {
+      // ✅ Chart Title (Top)
+      title: {
+        display: true,
+        text: '📊 Product Sales Comparison', 
+        color: 'red',
+        font: { size: 18, weight: 'bold',family: 'Arial' },
+        padding: {bottom: 15}
+      },
+
+       // ✅ Dataset label (legend)
+      legend: {
+        display: true,
+        position: 'top',
+        labels: { 
+          color: '#242424',
+          font: {size: 14, weight: 'normal',family: 'Arial'},
+        //  usePointStyle: true,
+        //  pointStyle: 'circle',
+        },
+      },
+
+      // ✅ tooltip styling
+      tooltip: {
+        backgroundColor: '#1f2937',
+        titleColor: '#fff',
+        bodyColor: '#fff',
+        padding: 10,
+        borderColor: '#ddd',
+        borderWidth: 1,
+        callbacks: {
+          label: function(context) {
+            return `${context.dataset.label} : ₹ ${context.raw} Cr`;
+          }
+        }
+      }
+
+    },
+
+ 
+    // indexAxis: 'y', // horizontal bars
+    scales: {
+      // ✅ X-axis title
+      x: {
+        stacked: false,
+        title: {
+          display: true,
+          text: 'Years 2025',
+          color: 'red',
+          font: { size: 12, weight: 'normal',family: 'Arial'  }
+        },
+        // beginAtZero: true,
+        grid: {
+          display: false
+        }
+      },
+
+      // ✅ Y-axis title (value title)
+      y: {
+        stacked: false,
+        title: {
+          display: true,
+          text: 'Revenue (₹ Crores)',
+          color: 'red',
+          font: { size: 12, weight: 'normal',family: 'Arial' }
+        },
+        beginAtZero: true,
+        min: -15,
+        max: 25,
+        grid: {
+          color: '#e0e0e0'
+        },
+      }
+    },
+
+    animation: {
+      duration: 1000,
+      easing: 'easeOutQuart'
+    }
+
+  }
+});
+</script>
+
+</body>
+</html>

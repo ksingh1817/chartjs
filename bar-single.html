@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chartjs</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      padding: 0px;
+      border-radius: 0;
+      margin: 0;
+    }
+    #chart-container {
+      width: 900px;              /* ✅ full width */
+      max-width: 95%;
+      height: auto;         
+      min-height: 500px; /* ✅ FIXED HEIGHT (important) */
+      margin:20px auto;
+      background: #fff;
+      padding:20px 5px 10px 5px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+<div id="chart-container">
+  <canvas id="myChart"></canvas>
+</div>
+
+<script>
+const ctx = document.getElementById('myChart');
+
+new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ['January', 'February', 'March', 'April', 'May', 'June','July', 'August','September','October','November','December'],
+    datasets: [{
+      label: 'Sales over Time 2025',
+      data: [12, 19, 3, 5,88,44,23,11,67,34,90,145],
+      backgroundColor: '#4285F4',
+      borderRadius: 4,
+    }]
+  },
+ 
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+
+    plugins: {
+      // ✅ Chart Title (Top)
+      title: {
+        display: true,
+        text: 'Product Sales Report', 
+        color: 'blue',
+        font: { size: 18, weight: 'bold',family: 'Arial' },
+        padding: {bottom: 20}
+      },
+ 
+
+      // ✅ Dataset label (legend)
+      legend: {
+        display: true,
+        labels: {
+          color: '#4285F4',
+          font: {size: 13, weight: 'normal',family: 'Arial'}
+        }
+      },
+
+      // ✅ tooltip styling
+      tooltip: {
+        backgroundColor: '#222',
+        titleColor: '#fff',
+        bodyColor: '#fff',
+        padding: 10,
+        callbacks: {
+          label: function(context) {
+            return ' ₹ ' + context.raw + ' Cr';
+          }
+        }
+      }
+    },
+
+    scales: {
+      // ✅ X-axis title
+      x: {
+        title: {
+          display: false,
+          text: 'Months 2025',
+          color: 'blue',
+          font: { size: 14, weight: 'normal',family: 'Arial'  }
+        },
+        grid: {
+          display: false
+        }
+      },
+
+      // ✅ Y-axis title (value title)
+      y: {
+        title: {
+          display: true,
+          text: 'Sales Value in CR',
+          color: 'blue',
+          font: { size: 14, weight: 'normal',family: 'Arial' }
+        },
+        beginAtZero: true,
+        grid: {
+          color: '#e0e0e0'
+        }
+      }
+    },
+
+    animation: {
+      duration: 2000,
+      easing: 'easeOutQuart'
+    }
+  }
+});
+</script>
+
+</body>
+</html>
