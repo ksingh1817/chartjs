@@ -1,0 +1,118 @@
+ 
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chartjs</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      padding: 0px;
+      border-radius: 0;
+      margin: 0;
+    }
+    #chart-container {
+      width: 900px;              /* ✅ full width */
+      max-width: 95%;
+      height: auto;         
+      min-height: 500px; /* ✅ FIXED HEIGHT (important) */
+      margin:20px auto;
+      background: #fff;
+      padding:20px 5px 10px 5px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+
+<div id="chart-container">
+  <canvas id="myChart"></canvas>
+</div>
+
+<script>
+async function loadChart() {
+  const ctx = document.getElementById('myChart');
+
+  new Chart(ctx, {
+    type: 'pie',
+    data: {
+      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
+      datasets: [{
+        label: 'Votes',
+        data: [12, 19, 3, 5, 2],
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.6)',
+          'rgba(54, 162, 235, 0.6)',
+          'rgba(255, 206, 86, 0.6)',
+          'rgba(75, 192, 192, 0.6)',
+          'rgba(153, 102, 255, 0.6)'
+        ],
+        borderColor: [
+          'rgba(255, 99, 132, 1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(153, 102, 255, 1)'
+        ],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      plugins: {
+        title: {
+          display: true,
+          text: 'Votes Distribution (Pie Chart)',
+          position: 'top',
+          font: {
+            size: 18,
+            weight: 'bold'
+          },
+          color: 'black'
+        },
+        legend: {
+          position: 'bottom', // can be 'top', 'left', 'bottom'
+          labels: {
+            color: 'black',
+            font: { size: 14 }
+          }
+        },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              let label = context.label || '';
+              let value = context.parsed;
+              return label + ': ' + value + ' votes';
+            }
+          }
+        },
+        datalabels: {
+          color: '#000',
+          font: {
+            weight: 'bold'
+          },
+          formatter: (value, context) => {
+            // Show percentage instead of raw value
+            let dataset = context.chart.data.datasets[0];
+            let total = dataset.data.reduce((a, b) => a + b, 0);
+            let percentage = ((value / total) * 100).toFixed(1) + '%';
+            return percentage;
+          }
+        }
+      }
+    },
+    plugins: [ChartDataLabels]
+  });
+}
+
+loadChart();
+</script>
+
+</body>
+</html>

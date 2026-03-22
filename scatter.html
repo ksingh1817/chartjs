@@ -1,0 +1,111 @@
+ 
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chartjs</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f7fa;
+      padding: 0px;
+      border-radius: 0;
+      margin: 0;
+    }
+    #chart-container {
+      width: 900px;              /* ✅ full width */
+      max-width: 95%;
+      height: auto;         
+      min-height: 500px; /* ✅ FIXED HEIGHT (important) */
+      margin:20px auto;
+      background: #fff;
+      padding:20px 5px 10px 5px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+
+<div id="chart-container">
+  <canvas id="myChart"></canvas>
+</div>
+
+<script>
+async function loadChart() {
+  const ctx = document.getElementById('myChart');
+
+  new Chart(ctx, {
+    type: 'scatter',
+    data: {
+      datasets: [
+        {
+          label: 'Dataset A',
+          data: [
+            { x: -10, y: 0 },
+            { x: 0, y: 10 },
+            { x: 10, y: 5 },
+            { x: 0.5, y: 5.5 }
+          ],
+          backgroundColor: 'rgba(255, 99, 132, 0.6)'
+        },
+        {
+          label: 'Dataset B',
+          data: [
+            { x: -5, y: 5 },
+            { x: 5, y: 15 },
+            { x: 15, y: 10 },
+            { x: 7, y: 8 }
+          ],
+          backgroundColor: 'rgba(54, 162, 235, 0.6)'
+        }
+      ]
+    },
+    options: {
+      plugins: {
+        title: {
+          display: true,
+          text: 'Scatter Chart Example',
+          font: {
+            size: 18,
+            weight: 'bold'
+          }
+        },
+        legend: {
+          position: 'top'
+        },
+        tooltip: {
+          callbacks: {
+            label: function(context) {
+              return '(' + context.parsed.x + ', ' + context.parsed.y + ')';
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          title: {
+            display: true,
+            text: 'X Axis'
+          }
+        },
+        y: {
+          title: {
+            display: true,
+            text: 'Y Axis'
+          }
+        }
+      }
+    }
+  });
+}
+
+loadChart();
+</script>
+
+</body>
+</html>
